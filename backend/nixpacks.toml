@@ -1,11 +1,16 @@
+providers = ["node"]
+
 [phases.setup]
 nixPkgs = ["nodejs_20", "openssl"]
 
 [phases.install]
-cmds = ["npm install"]
+cmds = ["npm install --include=dev"]
 
 [phases.build]
-cmds = ["npx prisma generate", "npm run build"]
+cmds = ["npx prisma generate", "npx nest build"]
 
 [start]
 cmd = "npx prisma migrate deploy && node dist/main.js"
+
+[variables]
+NPM_CONFIG_PRODUCTION = "false"
