@@ -4,9 +4,9 @@
   "description": "Online clothing shop backend",
   "scripts": {
     "build": "nest build",
-    "start": "nest start",
+    "start": "prisma db push --accept-data-loss && ts-node prisma/seed.ts && node dist/main.js",
     "start:dev": "nest start --watch",
-    "start:prod": "node dist/main",
+    "start:local": "nest start",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate deploy",
     "prisma:push": "prisma db push",
