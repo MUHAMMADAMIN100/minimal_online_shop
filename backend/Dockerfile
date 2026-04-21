@@ -11,11 +11,8 @@ RUN npm install
 
 COPY . .
 
-RUN echo "=== BEFORE BUILD ===" && ls -la
 RUN npm run build
-RUN echo "=== AFTER BUILD ===" && ls -la
-RUN echo "=== DIST CONTENTS ===" && (ls -la dist || echo "NO DIST FOLDER")
-RUN test -f dist/main.js || (echo "dist/main.js NOT FOUND!" && exit 1)
+RUN test -f dist/main.js || (echo "BUILD FAILED: dist/main.js not produced" && ls -la dist && exit 1)
 
 EXPOSE 8080
 
